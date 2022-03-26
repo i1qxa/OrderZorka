@@ -1,8 +1,11 @@
 package com.example.orderzorka.domain.groupProductItem
 
-import com.example.orderzorka.domain.productItem.ProductItem
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class GroupProductItem(
-    val name:String,
-    val groupId:Int = ProductItem.UNDEFINED_ID
+    @PrimaryKey val groupProductId:Int,
+    @ColumnInfo val groupProductName:String
 )

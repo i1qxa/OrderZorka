@@ -1,12 +1,13 @@
 package com.example.orderzorka.domain.productItem
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class ProductItem(
-    val name:String,//Имя
-    val unitId:Int,//Id еденицы измерения
-    val groupId:Int = 0,//Id группы
-    val productId:Int = UNDEFINED_ID
-) {
-    companion object {
-        const val UNDEFINED_ID:Int = -1
-    }
-}
+    @PrimaryKey val productId:Int,
+    @ColumnInfo val productName:String,
+    @ColumnInfo val unitProductId:Int,
+    @ColumnInfo val groupProductId:Int = 0
+)
