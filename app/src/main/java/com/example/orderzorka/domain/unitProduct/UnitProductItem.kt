@@ -3,10 +3,9 @@ package com.example.orderzorka.domain.unitProduct
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.orderzorka.domain.productItem.ProductItem
 
-@Entity
+@Entity(tableName = "unit_product_item")
 data class UnitProductItem(
-    @PrimaryKey val unitProductId:Int,
-    @ColumnInfo val unitProductName:String,
+     @PrimaryKey val unitProductId:Int,
+     @ColumnInfo val unitProductName:String,
 )

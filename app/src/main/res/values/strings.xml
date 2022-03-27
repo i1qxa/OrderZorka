@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OrderZorka</string>
+    <string name="add_btn_contente_describtion">Add new Product Item</string>
 </resources>

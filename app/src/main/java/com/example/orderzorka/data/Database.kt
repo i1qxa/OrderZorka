@@ -11,7 +11,7 @@ import com.example.orderzorka.domain.unitProduct.UnitProductItem
     version = 1
 )
 abstract class AppDatabase:RoomDatabase(){
-    abstract fun productItem(): Dao
-    abstract fun groupProductItem(): Dao
-    abstract fun unitProductItem(): Dao
+    abstract fun productItem(): ProductItemRepositoryImpl
+    abstract fun groupProductItem(): GroupProductItemRepositoryImpl
+    abstract fun unitProductItem(): UnitProductItemRepositoryImpl
 }
