@@ -2,17 +2,20 @@ package com.example.orderzorka.domain.productItem
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductItemRepository {
     @Insert(entity = ProductItem::class, onConflict = OnConflictStrategy.REPLACE)
-    fun addProductItem(productItem: ProductItem)
+    suspend fun addProductItem(productItem: ProductItem)
     @Delete(entity = ProductItem::class)
-    fun deleteProductItem(productItem: ProductItem)
+    suspend fun deleteProductItem(productItem: ProductItem)
+    @Query("DELETE FROM product_item")
+    suspend fun deleteAllProduct()
     @Query("SELECT * FROM product_item WHERE productId == (:productItemId)")
     fun getProductItem(productItemId:Int): ProductItem
     @Query("SELECT * FROM product_item")
-    fun getProductItemList():LiveData<List<ProductItem>>
+    fun getProductItemList(): Flow<List<ProductItem>>
 
     //fun editProductItem(productItem: ProductItem)
 }
