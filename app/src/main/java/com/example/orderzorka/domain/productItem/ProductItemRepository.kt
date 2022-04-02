@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface ProductListRepository {
+interface ProductItemRepository {
     @Insert(entity = ProductItem::class, onConflict = OnConflictStrategy.REPLACE)
     fun addProductItem(productItem: ProductItem)
     @Delete(entity = ProductItem::class)
@@ -14,5 +14,5 @@ interface ProductListRepository {
     @Query("SELECT * FROM product_item")
     fun getProductItemList():LiveData<List<ProductItem>>
 
-    fun editProductItem(productItem: ProductItem)
+    //fun editProductItem(productItem: ProductItem)
 }
