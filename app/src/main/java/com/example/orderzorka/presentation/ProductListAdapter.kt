@@ -27,7 +27,7 @@ class ProductListAdapter:androidx.recyclerview.widget.ListAdapter<ProductItem,Pr
             holder.tvName.text = productItem.productName
             holder.tvUnit.text = productItem.productId.toString()
         }
-        else TODO()
+        else holder.tvName.text = productItem.productName
     }
 
     override fun getItemViewType(position: Int): Int {
