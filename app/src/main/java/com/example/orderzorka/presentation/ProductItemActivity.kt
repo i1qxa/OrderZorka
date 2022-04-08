@@ -1,0 +1,12 @@
+package com.example.orderzorka.presentation
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.orderzorka.R
+
+class ProductItemActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_product_item)
+    }
+}

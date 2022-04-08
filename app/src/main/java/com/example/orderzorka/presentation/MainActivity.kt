@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setupProductItemClickListener(){
         rvAdapter.onProductItemClickListener = {
-            Toast.makeText(this,it.productId.toString(),Toast.LENGTH_SHORT).show()
+
         }
     }
 

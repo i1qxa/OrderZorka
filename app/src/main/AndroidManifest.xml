@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderZorka">
         <activity
+            android:name=".presentation.ProductItemActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>

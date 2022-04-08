@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">OrderZorka</string>
     <string name="add_btn_contente_describtion">Add new Product Item</string>
+    <string name="isGroup">Is Group</string>
+    <string name="isGroup">Is Group</string>
+    <string name="name_of_product">Name of Product</string>
+    <string name="pearent">Pearent</string>
+    <string name="unit">Unit</string>
 </resources>
