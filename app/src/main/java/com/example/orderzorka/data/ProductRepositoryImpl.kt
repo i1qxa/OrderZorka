@@ -11,4 +11,12 @@ class ProductRepositoryImpl(private val productDao:ProductItemRepository) {
     suspend fun addProduct(productItem:ProductItem){
         productDao.addProductItem(productItem)
     }
+    @WorkerThread
+    suspend fun editProductItem(productItem: ProductItem){
+        productDao.updateProductItem(productItem)
+    }
+    @WorkerThread
+    suspend fun getProductItem(productItemId:Int):ProductItem{
+        return productDao.getProductItem(productItemId)
+    }
 }
