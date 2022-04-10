@@ -37,11 +37,11 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/name_of_product" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/pearent"
+        android:id="@+id/tvParent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pearent"
@@ -53,10 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pearent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvParent" />
 
     <TextView
-        android:id="@+id/unit"
+        android:id="@+id/tvUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unit"
@@ -69,5 +69,14 @@
         android:layout_height="389dp"
         android:layout_marginTop="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUnit" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="@+id/rvUnit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
