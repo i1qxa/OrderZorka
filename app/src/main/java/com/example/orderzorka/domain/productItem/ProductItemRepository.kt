@@ -8,7 +8,7 @@ interface ProductItemRepository {
     @Insert(entity = ProductItem::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProductItem(productItem: ProductItem)
     @Delete(entity = ProductItem::class)
-    suspend fun deleteProductItem(productItemId: Int)
+    suspend fun deleteProductItem(productItem: ProductItem)
     @Query("DELETE FROM product_item")
     suspend fun deleteAllProduct()
     @Query("SELECT * FROM product_item WHERE productId == (:productItemId)")
@@ -17,5 +17,4 @@ interface ProductItemRepository {
     fun getProductItemList(): Flow<List<ProductItem>>
     @Update
     suspend fun updateProductItem(productItem: ProductItem)
-
 }

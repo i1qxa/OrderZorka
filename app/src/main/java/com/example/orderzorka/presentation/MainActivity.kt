@@ -1,7 +1,5 @@
 package com.example.orderzorka.presentation
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -27,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     val btnAdd = findViewById<FloatingActionButton>(R.id.fabAdd)
     btnAdd.setOnClickListener {
-        TODO("Сделать вызов второго окна")
+        var newProductItem = ProductItem(0,"Moloko",3,4)
+        mainViewModel.insertProduct(newProductItem)
     }
     }
     private fun setupRecyclerView(){

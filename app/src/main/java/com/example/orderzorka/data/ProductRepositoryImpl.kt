@@ -15,8 +15,7 @@ class ProductRepositoryImpl(private val productDao:ProductItemRepository) {
     suspend fun editProductItem(productItem: ProductItem){
         productDao.updateProductItem(productItem)
     }
-    @WorkerThread
-    suspend fun getProductItem(productItemId:Int):ProductItem{
+    fun getProductItem(productItemId:Int):ProductItem{
         return productDao.getProductItem(productItemId)
     }
 }
