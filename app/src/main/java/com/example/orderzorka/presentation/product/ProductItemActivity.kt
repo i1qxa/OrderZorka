@@ -1,4 +1,4 @@
-package com.example.orderzorka.presentation
+package com.example.orderzorka.presentation.product
 
 import android.content.Context
 import android.content.Intent
@@ -9,10 +9,11 @@ import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderzorka.R
+import com.example.orderzorka.presentation.ProductItemViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 class ProductItemActivity : AppCompatActivity() {
-    private lateinit var viewModel:ProductItemViewModel
+    private lateinit var viewModel: ProductItemViewModel
 
     private lateinit var tilName:TextInputLayout
     private lateinit var etName:EditText
@@ -27,7 +28,7 @@ class ProductItemActivity : AppCompatActivity() {
         initViews()
 
     }
-    fun initViews(){
+    private fun initViews(){
         tilName = findViewById<TextInputLayout>(R.id.tilName)
         etName = findViewById(R.id.etName)
         rvGroup = findViewById(R.id.rvGroupSelect)

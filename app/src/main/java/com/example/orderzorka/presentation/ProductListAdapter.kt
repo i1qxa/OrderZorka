@@ -6,11 +6,12 @@ import com.example.orderzorka.R
 import com.example.orderzorka.domain.productItem.ProductItem
 import java.lang.RuntimeException
 
-class ProductListAdapter:androidx.recyclerview.widget.ListAdapter<ProductItem,ProductItemViewHolder>(ProductItemDiffCallback()) {
+class ProductListAdapter:androidx.recyclerview.widget.ListAdapter<ProductItem, ProductItemViewHolder>(
+    ProductItemDiffCallback()) {
     var onProductItemClickListener: ((ProductItem) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductItemViewHolder {
         val layout = when(viewType){
-            ITEM_IS_GROUP -> R.layout.group_product_item_layout
+            ITEM_IS_GROUP -> R.layout.group_product_layout
             ITEM_IS_PRODUCT -> R.layout.product_item_layout
             else -> throw RuntimeException("Unknown ViewType $viewType")
         }

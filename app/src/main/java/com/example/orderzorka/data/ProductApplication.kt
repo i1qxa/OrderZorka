@@ -1,6 +1,7 @@
 package com.example.orderzorka.data
 
 import android.app.Application
+import com.example.orderzorka.domain.productItem.UnitRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -11,4 +12,6 @@ class ProductApplication:Application() {
     // rather than when the application starts
     val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { ProductRepositoryImpl(database.productItemDao()) }
+    val repositoryGroup by lazy { GroupItemRepositoryImpl(database.groupItemDao()) }
+    val repositoryUnit by lazy { UnitItemRepositoryImpl(database.unitItemDao()) }
 }

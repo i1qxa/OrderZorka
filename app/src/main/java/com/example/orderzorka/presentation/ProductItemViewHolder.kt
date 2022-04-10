@@ -6,6 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.orderzorka.R
 
 class ProductItemViewHolder(val view:View):RecyclerView.ViewHolder(view) {
-    val tvName = view.findViewById<TextView>(R.id.tv_name)
+    val tvName = view.findViewById<TextView>(R.id.tvRvGroupName)
     val tvUnit = view.findViewById<TextView>(R.id.tv_unit)
 }

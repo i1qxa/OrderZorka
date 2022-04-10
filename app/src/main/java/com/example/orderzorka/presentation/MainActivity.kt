@@ -9,7 +9,7 @@ import com.example.orderzorka.data.ProductApplication
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var rvAdapter:ProductListAdapter
+    private lateinit var rvAdapter: ProductListAdapter
     private lateinit var mainViewModel:MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
