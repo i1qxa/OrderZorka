@@ -17,9 +17,13 @@ class ProductItemViewModel(private val repository:ProductRepositoryImpl):ViewMod
     fun editProduct(productItem: ProductItem) = viewModelScope.launch {
         repository.editProductItem(productItem)
     }
-/*class ProductItemViewModelFactory(private val repository: ProductRepositoryImpl): ViewModelProvider.Factory{
+class ProductItemViewModelFactory(private val repository: ProductRepositoryImpl): ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        TODO("Not yet implemented")
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
-}*/
+}
 }

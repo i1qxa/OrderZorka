@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderzorka.R
 import com.example.orderzorka.data.ProductApplication
-import com.example.orderzorka.domain.productItem.ProductItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -24,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     val btnAdd = findViewById<FloatingActionButton>(R.id.fabAdd)
     btnAdd.setOnClickListener {
-        var newProductItem = ProductItem(0,"Moloko",3,4)
-        mainViewModel.insertProduct(newProductItem)
+        val intent = ProductItemActivity.newIntentAddProduct(this)
+        startActivity(intent)
     }
     }
     private fun setupRecyclerView(){
@@ -37,7 +36,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setupProductItemClickListener(){
         rvAdapter.onProductItemClickListener = {
-
+            val intent = ProductItemActivity.newIntentEditProduct(this,it.productId)
+            startActivity(intent)
         }
     }
 

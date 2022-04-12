@@ -5,4 +5,10 @@
     <string name="parent">Parent</string>
     <string name="unit">Unit</string>
     <string name="name_of_product">name_of_product</string>
+    <string name="name">Name</string>
+    <string name="tvGroupName">Group</string>
+    <string name="tvUnitName">Unit</string>
+    <string name="hintUnitName">Unit name</string>
+    <string name="hintGroupName">Group name</string>
+    <string name="btnSave">Save</string>
 </resources>
