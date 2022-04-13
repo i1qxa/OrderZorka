@@ -34,6 +34,7 @@ class ProductItemActivity : AppCompatActivity() {
         parseIntent()
         launchCurrentMode()
         launchAddMode()
+        finishWork()
 
     }
     private fun launchAddMode(){
@@ -41,17 +42,33 @@ class ProductItemActivity : AppCompatActivity() {
             etUnit.text.toString().toInt(), etGroup.text.toString().toInt())
         btnSave.setOnClickListener {
             viewModel.insertProduct(newProductItem)
-            finish()
+
         }
 
     }
     private fun launchEditMode(){
+        viewModel.getProduct(productId)
+        viewModel.productItem.observe(this){
+            etName.setText(it.productName)
+            etGroup.setText(it.groupProductId)
+            etUnit.setText(it.unitProductId)
+        }
+        btnSave.setOnClickListener {
+            var newProductItem = ProductItem(productId,etName.text.toString(),
+                etUnit.text.toString().toInt(),etGroup.text.toString().toInt())
+            viewModel.editProduct(newProductItem)
+        }
 
     }
     private fun launchCurrentMode(){
         when(screenMode){
             MODE_ADD -> launchAddMode()
             MODE_EDIT -> launchEditMode()
+        }
+    }
+    fun finishWork(){
+        viewModel.shouldCloseScreen.observe(this){
+            finish()
         }
     }
 
@@ -65,8 +82,6 @@ class ProductItemActivity : AppCompatActivity() {
             if (!intent.hasExtra(PRODUCT_ID)) throw RuntimeException("Intent got no productId")
             productId = intent.getIntExtra(PRODUCT_ID, EMPTY_ID)
         }
-
-
     }
 
     private fun initViews(){
