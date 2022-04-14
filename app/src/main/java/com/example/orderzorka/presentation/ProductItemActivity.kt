@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import com.example.orderzorka.R
@@ -34,31 +36,74 @@ class ProductItemActivity : AppCompatActivity() {
         parseIntent()
         launchCurrentMode()
         launchAddMode()
-        finishWork()
+        viewModelObserve()
+        addTextChangeListeners()
 
     }
-    private fun launchAddMode(){
-        val newProductItem = ProductItem(0,etName.text.toString(),
-            etUnit.text.toString().toInt(), etGroup.text.toString().toInt())
-        btnSave.setOnClickListener {
-            viewModel.insertProduct(newProductItem)
+    private fun addTextChangeListeners(){
+        etName.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.resetErrorInputName()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                }
+        })
+        etGroup.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.resetErrorInputGroup()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+        etUnit.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.resetErrorInputUnit()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+    }
+
+    private fun btnSaveAction(productId: Int){
+        val name = etName.text.toString()
+        val group = etGroup.text.toString()
+        val unit = etUnit.text.toString()
+        viewModel.insertProduct(name, group, unit)
+    }
+
+    private fun launchAddMode(){
+        btnSave.setOnClickListener {
+            btnSaveAction(0)
         }
 
     }
     private fun launchEditMode(){
-        viewModel.getProduct(productId)
+        TODO("Реализовать открытие в режиме редактирования")
+        /*viewModel.getProduct(productId)
         viewModel.productItem.observe(this){
             etName.setText(it.productName)
             etGroup.setText(it.groupProductId)
             etUnit.setText(it.unitProductId)
         }
         btnSave.setOnClickListener {
-            var newProductItem = ProductItem(productId,etName.text.toString(),
+            *//*val newProductItem = ProductItem(productId,etName.text.toString(),
                 etUnit.text.toString().toInt(),etGroup.text.toString().toInt())
-            viewModel.editProduct(newProductItem)
+            viewModel.editProduct(newProductItem)*//*
+            btnSaveAction(productId)
         }
-
+*/
     }
     private fun launchCurrentMode(){
         when(screenMode){
@@ -66,9 +111,36 @@ class ProductItemActivity : AppCompatActivity() {
             MODE_EDIT -> launchEditMode()
         }
     }
-    fun finishWork(){
+    private fun viewModelObserve(){
         viewModel.shouldCloseScreen.observe(this){
             finish()
+        }
+        viewModel.errorInputName.observe(this){
+            val message = if(it){
+                "Error input Name"
+            }
+            else{
+                null
+            }
+            tilName.error = message
+        }
+        viewModel.errorInputGroup.observe(this){
+            val message = if(it){
+                "Error input group"
+            }
+            else{
+                null
+            }
+            tilGroup.error = message
+        }
+        viewModel.errorInputUnit.observe(this){
+            val message = if(it){
+                "Error input Unit"
+            }
+            else{
+                null
+            }
+            tilUnit.error = message
         }
     }
 
