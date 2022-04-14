@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputLayout
 import java.lang.RuntimeException
 
 class ProductItemActivity : AppCompatActivity() {
-    private lateinit var viewModel:ProductItemViewModel
+    /*private lateinit var viewModel:ProductItemViewModel
 
     private lateinit var tilName:TextInputLayout
     private lateinit var etName:EditText
@@ -27,20 +27,20 @@ class ProductItemActivity : AppCompatActivity() {
 
     private  var screenMode = MODE_UNKNOWN
     private  var productId = EMPTY_ID
-
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_item)
-        viewModel = ProductItemViewModel((application as ProductApplication).repository)
+        /*viewModel = ProductItemViewModel((application as ProductApplication).repository)
         initViews()
         parseIntent()
         launchCurrentMode()
         launchAddMode()
         viewModelObserve()
-        addTextChangeListeners()
+        addTextChangeListeners()*/
 
     }
-    private fun addTextChangeListeners(){
+    /*private fun addTextChangeListeners(){
         etName.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -91,19 +91,19 @@ class ProductItemActivity : AppCompatActivity() {
     }
     private fun launchEditMode(){
         TODO("Реализовать открытие в режиме редактирования")
-        /*viewModel.getProduct(productId)
+        *//*viewModel.getProduct(productId)
         viewModel.productItem.observe(this){
             etName.setText(it.productName)
             etGroup.setText(it.groupProductId)
             etUnit.setText(it.unitProductId)
         }
         btnSave.setOnClickListener {
-            *//*val newProductItem = ProductItem(productId,etName.text.toString(),
+            *//**//*val newProductItem = ProductItem(productId,etName.text.toString(),
                 etUnit.text.toString().toInt(),etGroup.text.toString().toInt())
-            viewModel.editProduct(newProductItem)*//*
+            viewModel.editProduct(newProductItem)*//**//*
             btnSaveAction(productId)
         }
-*/
+*//*
     }
     private fun launchCurrentMode(){
         when(screenMode){
@@ -165,7 +165,7 @@ class ProductItemActivity : AppCompatActivity() {
         etUnit = findViewById(R.id.etUnit)
         btnSave = findViewById(R.id.btnSaveProduct)
     }
-
+*/
     companion object{
         const val EXTRA_SCREEN_MODE = "extra_screen_mode"
         const val MODE_ADD = "mode_add"
