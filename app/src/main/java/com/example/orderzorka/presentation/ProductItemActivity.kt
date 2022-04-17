@@ -145,8 +145,8 @@ class ProductItemActivity : AppCompatActivity() {
     }
 
     private fun parseIntent(){
-        if (!intent.hasExtra(EXTRA_SCREEN_MODE)) throw RuntimeException("Param screen mode is absent")
-        val mode = intent.getStringExtra(EXTRA_SCREEN_MODE)
+        if (!intent.hasExtra(SCREEN_MODE)) throw RuntimeException("Param screen mode is absent")
+        val mode = intent.getStringExtra(SCREEN_MODE)
         if (mode!= MODE_ADD && mode!= MODE_EDIT) throw RuntimeException("Unknown mode: $mode")
         screenMode = mode
         if (mode == MODE_EDIT)

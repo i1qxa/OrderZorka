@@ -1,6 +1,5 @@
 package com.example.orderzorka.presentation
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -16,8 +15,6 @@ import com.example.orderzorka.data.ProductApplication
 import com.google.android.material.textfield.TextInputLayout
 
 class FragmentActivityProductItem(
-    private  var screenMode:String = MODE_UNKNOWN,
-    private  var productId:Int = EMPTY_ID
 ):Fragment() {
     private lateinit var viewModel:ProductItemViewModel
 
@@ -29,6 +26,9 @@ class FragmentActivityProductItem(
     private lateinit var etUnit:EditText
     private lateinit var btnSave: Button
 
+    private  var screenMode:String = MODE_UNKNOWN
+    private  var productId:Int = EMPTY_ID
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,11 +38,15 @@ class FragmentActivityProductItem(
         return inflater.inflate(R.layout.fragment_activity_product_item,container,false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        parseParams()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ProductItemViewModel((application as ProductApplication).repository)
         initViews(view)
-        parseParams()
         launchCurrentMode()
         launchAddMode()
         viewModelObserve()
@@ -153,8 +157,17 @@ class FragmentActivityProductItem(
     }
 
     private fun parseParams(){
-        if (screenMode!= MODE_ADD || screenMode!= MODE_EDIT) throw RuntimeException("Param screen mode is absent")
-        if (screenMode== MODE_EDIT && productId == EMPTY_ID) throw RuntimeException("Intent got no productId")
+        val args = requireArguments()
+        if (!args.containsKey(SCREEN_MODE))
+            throw java.lang.RuntimeException("Arguments got now SCREEN_MODE")
+        screenMode = args.getString(SCREEN_MODE).toString()
+        if (screenMode != MODE_ADD || screenMode!= MODE_EDIT)
+            throw RuntimeException("Param screen mode is absent")
+        if (screenMode == MODE_EDIT) {
+            if (!args.containsKey(PRODUCT_ID))
+                throw java.lang.RuntimeException("Arguments got no PRODUCT_ID")
+            productId = args.getInt(PRODUCT_ID)
+        }
     }
 
     private fun initViews(view: View){
@@ -167,22 +180,26 @@ class FragmentActivityProductItem(
         btnSave = view.findViewById(R.id.btnSaveProduct)
     }
     companion object{
-        const val EXTRA_SCREEN_MODE = "extra_screen_mode"
+        const val SCREEN_MODE = "extra_screen_mode"
         const val MODE_ADD = "mode_add"
         const val MODE_EDIT = "mode_edit"
         const val PRODUCT_ID = "product_id"
         const val MODE_UNKNOWN = "mode_unknown"
         const val EMPTY_ID = -1
-        fun newIntentAddProduct(context: Context): Intent {
-            val intent = Intent(context, ProductItemActivity::class.java)
-            intent.putExtra(EXTRA_SCREEN_MODE, MODE_ADD)
-            return intent
+        fun newInstanceAddProduct(): FragmentActivityProductItem {
+            return FragmentActivityProductItem().apply {
+                arguments = Bundle().apply {
+                    putString(SCREEN_MODE, MODE_ADD)
+                }
+            }
         }
-        fun newIntentEditProduct(context: Context, productId:Int): Intent {
-            val intent = Intent(context, ProductItemActivity::class.java)
-            intent.putExtra(EXTRA_SCREEN_MODE, MODE_EDIT)
-            intent.putExtra(PRODUCT_ID,productId)
-            return intent
+        fun newInstanceEditProduct(productId:Int): FragmentActivityProductItem {
+            return FragmentActivityProductItem().apply {
+                arguments = Bundle().apply {
+                    putString(SCREEN_MODE, MODE_EDIT)
+                    putInt(PRODUCT_ID, productId)
+                }
+            }
         }
 
     }
