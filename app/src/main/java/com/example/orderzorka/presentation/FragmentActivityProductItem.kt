@@ -1,5 +1,6 @@
 package com.example.orderzorka.presentation
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -125,7 +126,7 @@ class FragmentActivityProductItem(
     }
     private fun viewModelObserve(){
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner){
-            finish()
+            activity?.onBackPressed()
         }
         viewModel.errorInputName.observe(viewLifecycleOwner){
             val message = if(it){
@@ -200,6 +201,17 @@ class FragmentActivityProductItem(
                     putInt(PRODUCT_ID, productId)
                 }
             }
+        }
+        fun newIntentAddItem(context: Context):Intent{
+            val intent = Intent(context, ProductItemActivity::class.java)
+            intent.putExtra(SCREEN_MODE, MODE_ADD)
+            return intent
+        }
+        fun newIntentEditItem(context: Context, productItemId:Int):Intent{
+            val intent = Intent(context,ProductItemActivity::class.java)
+            intent.putExtra(SCREEN_MODE, MODE_EDIT)
+            intent.putExtra(PRODUCT_ID, productItemId)
+            return intent
         }
 
     }
